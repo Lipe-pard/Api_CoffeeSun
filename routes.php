@@ -3,8 +3,8 @@ require('config.php');
 
 $url = $_SERVER['REQUEST_URI']; // Pega a url digitado pelo usuario 
 $lengthStrForlder = strlen(BASE_URL_API); // Verifica o tamanho da constante
-$url_clean = substr($url, $lengthStrForlder); // Retira a parte da constante da url
-$routeWithoutParameters = explode("?", $url_clean); // Elimina parâmetros
+$urlClean = substr($url, $lengthStrForlder); // Retira a parte da constante da url
+$routeWithoutParameters = explode("?", $urlClean); // Elimina parâmetros
 $route = explode('/', $routeWithoutParameters[0]);
 //Carrega o autoloaders
 require(HELPERS_FOLDER.'autoloaders.php');
@@ -23,7 +23,7 @@ $controller_path = CONTROLLERS_FOLDER . $controller_name . 'Controller.php';
 if(file_exists($controller_path)){
    $controller_class_name = $controller_name . "Controller";
    $controller = new $controller_class_name();
-   // Ve se a action existe
+      // Ve se a action existe
     if(method_exists($controller, $action)){
         $controller->$action();
     }

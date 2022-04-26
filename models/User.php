@@ -17,7 +17,7 @@ class User{
    function create(){
       $db = new Database();
       try {
-        $stmt = $db->conn->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :pass)");
+        $stmt = $db->conn->prepare("INSERT INTO users (name, email, pass) VALUES (:name, :email, :pass)");
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":email", $this->email);
         $stmt->bindParam(":pass", $this->pass);
@@ -26,7 +26,7 @@ class User{
         return $id;
       } 
       catch(PDOException $e) {
-        $result['Mensage'] = "Erro Create" . $e-> getMenssage();
+        $result['Mensage'] = "Erro Create" . $e->getMessage();
         $response = new Output();
         $response->out($result, 500);
       }
@@ -41,7 +41,7 @@ class User{
       return true;
     } 
     catch(PDOException $e) {
-      $result['Mensage'] = "Erro no Delete" . $e-> getMenssage();
+      $result['Mensage'] = "Erro no Delete" . $e->getMessage();
       $response = new Output();
       $response = out($result, 500);
     }
@@ -50,7 +50,7 @@ class User{
    function update(){
     $db = new Database();
     try {
-      $stmt = $db->conn->prepare("UPDATE users SET name=:name, email=:email, password=:pass WHERE id=:id;");
+      $stmt = $db->conn->prepare("UPDATE users SET name=:name, email=:email, pass=:pass WHERE id=:id;");
       $stmt->bindParam(':id', $this->id);
       $stmt->bindParam(':name', $this->name);
       $stmt->bindParam(':email', $this->email);
@@ -59,7 +59,7 @@ class User{
       return true;
     } 
     catch(PDOException $e) {
-      $result['Mensage'] = "Erro de Update" . $e-> getMenssage();
+      $result['Mensage'] = "Erro de Update" . $e->getMessage();
       $response = new Output();
       $reaponse = out($result, 500);
     }
@@ -75,7 +75,7 @@ class User{
 
     } 
     catch(PDOException $e) {
-      $result['Mensage'] = "Erro de Select" . $e-> getMenssage();
+      $result['Mensage'] = "Erro de Select" . $e->getMessage();
       $response = new Output();
       $reaponse = out($result, 500);
     }
@@ -84,14 +84,14 @@ class User{
    function selectId(){
     $db = new Database();
     try {
-      $stmt = $db->conn->prepare("SELECT name, email, password FROM users WHERE id = :id");
+      $stmt = $db->conn->prepare("SELECT name, email, pass FROM users WHERE id = :id");
       $stmt->bindParam(":id", $this->id);
       $stmt->execute();
       $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
       return $result;
     } 
     catch(PDOException $e) {
-      $result['Mensage'] = "Erro Select id" . $e-> getMenssage();
+      $result['Mensage'] = "Erro Select id" . $e->getMessage();
       $response = new Output();
       $reaponse = out($result, 500);
     }

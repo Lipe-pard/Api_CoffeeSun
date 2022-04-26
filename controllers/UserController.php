@@ -63,7 +63,7 @@ class UserController{
     function selectId(){
         $response = new Output();
         $response->allowedMethod('GET');
-        $id = $_POST['id'];
+        $id = $_GET['id'];
         $user = new User($id, NULL, NULL, NULL);
         $result = $user->selectId();
         $response = new Output();
