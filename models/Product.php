@@ -24,7 +24,6 @@ class Product{
         $this->color = $color;
         $this->image = $image;
     }
-
     //Métodos
     function create(){
         $db = new Database();
