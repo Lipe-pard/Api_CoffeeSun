@@ -84,7 +84,7 @@ class ProductController{
         $response = new Output();
         $response->allowedMethod('GET');
         $id = $_GET['id'];
-        $product = new Product($id, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+        $product = new Product($id, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
         $result = $product->selectId();
         $response = new Output();
         $response->out($result);
