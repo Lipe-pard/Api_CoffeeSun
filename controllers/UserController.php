@@ -9,7 +9,7 @@ class UserController{
         $email = $_POST['email'];
         $pass = $_POST['pass'];
         // Processamento
-        $user = new User(NULL, $name, $email, $pass);
+        $user = new User(NULL, $name, $email, sha1($pass));
         $id = $user->create();  
         //Saída
         $result['Mensage'] = "Criado com sucesso";

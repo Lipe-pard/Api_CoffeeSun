@@ -4,6 +4,10 @@ class ProductController{
     function create(){
         $response = new Output();
         $response->allowedMethod('POST');
+        //Permisão de acesso somente para admin
+        // $auth = new Auth();
+        // $user_session = $auth->allowedRole('admin');
+
         //Adicionar a variavel os atributos da classe
         $name = $_POST['name'];
         $discription = $_POST['discription'];
@@ -34,6 +38,10 @@ class ProductController{
     function delete(){
         $response = new Output();
         $response->allowedMethod('POST');
+
+        // $auth = new Auth();
+        // $user_session = $auth->allowedRole('admin');
+
         $id = $_POST['id'];
         $product = new Product($id, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
         $product->delete();  
@@ -46,6 +54,10 @@ class ProductController{
     function update(){
         $response = new Output();
         $response->allowedMethod('POST');
+
+        // $auth = new Auth();
+        // $user_session = $auth->allowedRole('admin');
+        
         $id = $_POST['id'];
         $name = $_POST['name'];
         $discription = $_POST['discription'];
@@ -87,6 +99,16 @@ class ProductController{
         $product = new Product($id, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
         $result = $product->selectId();
         $response = new Output();
+        $response->out($result);
+    }
+
+    function selectIds(){
+        $response= new Output();
+        $response->allowedMethod('GET');
+        $id = $_GET['id'];
+        $product = new Product(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+        $result= $product->selectIds($id);
+
         $response->out($result);
     }
 }

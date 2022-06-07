@@ -117,6 +117,22 @@ class Product{
           $reaponse = out($result, 500);
         }
     }
+
+    function selectIds($id){
+        $arrayIds = array_map('intval', explode(',', $id));
+        $arrayIds = implode(',', $arrayIds);
+        $db = new DataBase();
+        try{
+            $stmt = $db->conn->prepare("SELECT * FROM product WHERE id IN($arrayIds);");
+            $stmt->execute();
+            $result= $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        }catch(PDOException $e) {
+            $result['Mensage'] = "Error Select By ID: " . $e->getMessage();
+            $response= new Output();
+            $response->out($result, 500); 
+        }
+    }
 }
 
 ?>
