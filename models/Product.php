@@ -105,7 +105,7 @@ class Product{
     function selectId(){
         $db = new Database();
         try {
-          $stmt = $db->conn->prepare("SELECT name, discription, value, amount, event, type, color, image  FROM product WHERE id = :id");
+          $stmt = $db->conn->prepare("SELECT * FROM product WHERE id = :id");
           $stmt->bindParam(":id", $this->id);
           $stmt->execute();
           $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

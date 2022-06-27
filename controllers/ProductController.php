@@ -5,8 +5,8 @@ class ProductController{
         $response = new Output();
         $response->allowedMethod('POST');
         //Permisão de acesso somente para admin
-        // $auth = new Auth();
-        // $user_session = $auth->allowedRole('admin');
+        $auth = new Auth();
+        $user_session = $auth->allowedRole('admin');
 
         //Adicionar a variavel os atributos da classe
         $name = $_POST['name'];
@@ -39,8 +39,8 @@ class ProductController{
         $response = new Output();
         $response->allowedMethod('POST');
 
-        // $auth = new Auth();
-        // $user_session = $auth->allowedRole('admin');
+        $auth = new Auth();
+        $user_session = $auth->allowedRole('admin');
 
         $id = $_POST['id'];
         $product = new Product($id, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -55,8 +55,8 @@ class ProductController{
         $response = new Output();
         $response->allowedMethod('POST');
 
-        // $auth = new Auth();
-        // $user_session = $auth->allowedRole('admin');
+        $auth = new Auth();
+        $user_session = $auth->allowedRole('admin');
         
         $id = $_POST['id'];
         $name = $_POST['name'];
@@ -88,7 +88,6 @@ class ProductController{
         $response->allowedMethod('GET');
         $product = new Product(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
         $result = $product->selectAll();
-        $response = new Output();
         $response->out($result);
     }
 
@@ -98,7 +97,6 @@ class ProductController{
         $id = $_GET['id'];
         $product = new Product($id, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
         $result = $product->selectId();
-        $response = new Output();
         $response->out($result);
     }
 
